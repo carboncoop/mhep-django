@@ -57,6 +57,13 @@
         return '{% static "12345" %}'.replace(/12345/, resourcePath);
       },
 
+      admin: {
+        organisation: function(organisationID) {
+          const dummyURL = '{% url "admin:v1_organisation_change" 12345 %}';
+          return dummyURL.replace(/12345/, orgid.toString());
+        }
+      },
+
     }
   }();
 </script>
