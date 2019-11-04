@@ -2,6 +2,7 @@ import factory
 
 from typing import Any, Sequence
 
+from .. import VERSION
 from ..models import Assessment, Library, Organisation
 from mhep.users.tests.factories import UserFactory
 
@@ -55,7 +56,7 @@ class OrganisationWithExtrasFactory(OrganisationFactory):
     def assessments(self, create: bool, extracted: Sequence[Any], **kwargs):
         from mhep.users.tests.factories import UserFactory
         self._assessment_owner = UserFactory.create()
-        self.v1_assessments.add(AssessmentFactory.create(owner=self._assessment_owner))
+        getattr(self, f"{VERSION}_assessments").add(AssessmentFactory.create(owner=self._assessment_owner))
 
     @factory.post_generation
     def members(self, create: bool, extracted: Sequence[Any], **kwargs):

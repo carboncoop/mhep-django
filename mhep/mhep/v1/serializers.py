@@ -1,6 +1,8 @@
 import datetime
 
 from rest_framework import serializers
+
+from . import VERSION
 from .models import Assessment, Library, Organisation
 
 
@@ -120,8 +122,8 @@ class OrganisationSerializer(StringIDMixin, serializers.ModelSerializer):
             "members",
         ]
 
-    def get_assessments(self, obj):
-        return obj.v1_assessments.count()
+    def get_assessments(self, org):
+        return getattr(org, f"{VERSION}_assessments").count()
 
     def get_members(self, obj):
         def userinfo(user):
