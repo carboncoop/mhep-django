@@ -121,7 +121,7 @@ class OrganisationSerializer(StringIDMixin, serializers.ModelSerializer):
         ]
 
     def get_assessments(self, obj):
-        return obj.assessments.count()
+        return obj.v1_assessments.count()
 
     def get_members(self, obj):
         def userinfo(user):

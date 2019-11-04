@@ -28,5 +28,5 @@ class OrganisationAdmin(admin.ModelAdmin):
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
-    def number_of_assessments(self, obj):
-        return obj.assessments.all().count()
+    def number_of_assessments(self, org):
+        return org.v1_assessments.all().count()
