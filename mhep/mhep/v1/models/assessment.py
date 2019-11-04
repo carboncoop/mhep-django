@@ -20,6 +20,7 @@ class Assessment(models.Model):
         settings.AUTH_USER_MODEL,
         null=False, blank=False,
         on_delete=models.PROTECT,
+        related_name="%(app_label)s_assessments",
     )
 
     organisation = models.ForeignKey(
@@ -28,7 +29,7 @@ class Assessment(models.Model):
         blank=True,
         default=None,
         on_delete=models.SET_NULL,
-        related_name="assessments",
+        related_name="%(app_label)s_assessments",
     )
 
     name = models.TextField()
