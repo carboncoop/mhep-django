@@ -14,3 +14,10 @@ def test_organisation_assessments(organisation_with_extras: Organisation):
 
 def test_organisations_related_name_on_user_model(user_with_org: settings.AUTH_USER_MODEL):
     assert getattr(user_with_org, f"{VERSION}_organisations").all().count() == 1
+
+
+def test_organisation_image_path():
+    organisation = Organisation(id=100, name="Carbon Coop")
+    filename = organisation.organisation_image_path("cc-logo-messy-60.png")
+    assert filename.endswith("100-carbon-coop.png")
+    assert "organisations/" in filename
